@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HealthWorkHelper.Classes.Commands;
+using System;
 using System.Windows;
 using System.Windows.Input;
 
@@ -41,7 +42,7 @@ namespace HealthWorkHelper.Classes
             OpenTime = DateTime.Now.AddSeconds(WorkSecondsDuration);
             LastRelaxTime = DateTime.Now;
 
-            ToWorkCommand = new DelegateCommand()
+            ToWorkCommand = new TimedCommand(Showing)
             {
                 CanExecuteFunc = () => OpenTime.AddSeconds(RelaxSecondsDuration) <= DateTime.Now,
                 CommandAction = () => ToWork()

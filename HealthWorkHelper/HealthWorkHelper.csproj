@@ -60,8 +60,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="Classes\BackgroundProvider.cs" />
-    <Compile Include="Classes\DelegateCommand.cs" />
-    <Compile Include="Classes\HideCommand.cs" />
+    <Compile Include="Classes\Commands\CommandBase.cs" />
+    <Compile Include="Classes\Commands\TimedCommand.cs" />
+    <Compile Include="Classes\Commands\DelegateCommand.cs" />
     <Compile Include="Classes\ShowingManager.cs" />
     <Compile Include="Controls\SwimmingButton.xaml.cs">
       <DependentUpon>SwimmingButton.xaml</DependentUpon>
