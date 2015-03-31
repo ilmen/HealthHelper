@@ -12,7 +12,7 @@ namespace HealthWorkHelper.Classes
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private BackgroundProvider backgroundManager;
+        private BackgroundProvider backgroundProvider;
 
         #region INPC - Background
         private BitmapImage _Background;
@@ -30,14 +30,14 @@ namespace HealthWorkHelper.Classes
         }
         #endregion
      
-        public ShowingManager ShowingManager
+        public ScriptProvider ScriptProvider
         { get; private set; }
 
-        public MainWindowViewModel(ShowingManager showingManager, BackgroundProvider backgroundManager)
+        public MainWindowViewModel(ScriptProvider scriptProvider, BackgroundProvider backgroundProvider)
         {
-            this.backgroundManager = backgroundManager;
-            this.ShowingManager = showingManager;
-            this.ShowingManager.Showing += (s, e) => this.Background = backgroundManager.GetBackground();
+            this.backgroundProvider = backgroundProvider;
+            this.ScriptProvider = scriptProvider;
+            this.ScriptProvider.Showing += (s, e) => this.Background = backgroundProvider.GetBackground();
         }
     }
 }

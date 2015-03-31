@@ -17,11 +17,11 @@ namespace HealthWorkHelper
             var backgroundProvider = new BackgroundProvider();
 
             var view = new MainWindow();
-            var showingManager = new ShowingManager(view);
-            var vm = new MainWindowViewModel(showingManager, backgroundProvider);
+            var scriptProvider = new ScriptProvider(view);
+            var vm = new MainWindowViewModel(scriptProvider, backgroundProvider);
             view.DataContext = vm;
 
-            showingManager.Start();
+            scriptProvider.Start();
         }
     }
 }

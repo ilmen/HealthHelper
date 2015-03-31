@@ -63,7 +63,7 @@
     <Compile Include="Classes\Commands\CommandBase.cs" />
     <Compile Include="Classes\Commands\TimedCommand.cs" />
     <Compile Include="Classes\Commands\DelegateCommand.cs" />
-    <Compile Include="Classes\ShowingManager.cs" />
+    <Compile Include="Classes\ScriptProvider.cs" />
     <Compile Include="Controls\SwimmingButton.xaml.cs">
       <DependentUpon>SwimmingButton.xaml</DependentUpon>
     </Compile>
@@ -121,6 +121,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\10.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Classes\Converters\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

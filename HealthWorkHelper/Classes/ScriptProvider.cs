@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace HealthWorkHelper.Classes
 {
-    public class ShowingManager
+    public class ScriptProvider
     {
         public static readonly int DelaySecondsDuration = 5;
         public static readonly int RelaxSecondsDuration = 10;
@@ -34,7 +34,7 @@ namespace HealthWorkHelper.Classes
         public ICommand DoDelayCommand
         { get; private set; }
 
-        public ShowingManager(Window window)
+        public ScriptProvider(Window window)
         {
             storedWindow = window;
             storedWindow.Closing += (s, e) => e.Cancel = true;  // отменяем закрытие окна
