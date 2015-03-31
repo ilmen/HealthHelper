@@ -1,0 +1,117 @@
+﻿<Window x:Class="HealthWorkHelper.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:HealthWorkHelper.Controls"
+        ShowInTaskbar="False"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Topmost="True"
+        WindowStyle="None"
+        Height="450" Width="350">
+    <Window.Resources>
+        <DropShadowEffect x:Key="EffectZIndex1" ShadowDepth="0" Opacity="0.4" BlurRadius="10"/>
+        <DropShadowEffect x:Key="EffectZIndex2" ShadowDepth="0" Opacity="0.6" BlurRadius="20"/>
+    </Window.Resources>
+    <Border
+        BorderBrush="Gray"
+        BorderThickness="1">
+        <Grid>
+            <Grid.Resources>
+                <Style x:Key="DoDelayButtonContentStyle" TargetType="TextBlock">
+                    <Setter Property="FontFamily" Value="Tahoma" />
+                    <Setter Property="FontSize" Value="10" />
+                    <Setter Property="Text" Value="+5" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Style>
+                <Style x:Key="DoDelayButtonPathStyle" TargetType="Path">
+                    <Setter Property="StrokeThickness" Value="2" />
+                    <Setter Property="StrokeStartLineCap" Value="Round" />
+                    <Setter Property="StrokeEndLineCap" Value="Round" />
+                    <Setter Property="Data">
+                        <Setter.Value>
+                            <GeometryGroup>
+                                <LineGeometry StartPoint="0 5" EndPoint="5 10" />
+                                <LineGeometry StartPoint="5 10" EndPoint="10 5" />
+                            </GeometryGroup>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="350" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <!--<Image
+                Grid.RowSpan="2"
+                Source="pack://application:,,,/Images/12.jpg" />-->
+            <Image
+                Grid.RowSpan="2"
+                Source="{Binding Background}"/>
+            
+            <Grid Grid.Row="1">
+                <Border
+                    Background="Black"
+                    Opacity="0.15">
+                    <!--<Border.OpacityMask>
+                        <LinearGradientBrush>
+                            <GradientStop Color="Silver" Offset="0.0" />
+                            <GradientStop Color="Gray" Offset="0.6" />
+                            <GradientStop Color="Black" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Border.OpacityMask>-->
+                </Border>
+
+                <TextBlock
+                    Foreground="White"
+                    FontSize="24"
+                    FontFamily="Technical Italic, Comic Sans MS, Arial"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    Margin="20 0 5 0"
+                    TextWrapping="Wrap"
+                    Effect="{StaticResource EffectZIndex2}">
+                    <TextBlock.Text>
+                        <Binding Path="ShowingManager.LastRelaxTime" StringFormat="Прошло {0} минут..." />
+                    </TextBlock.Text>
+                </TextBlock>
+
+                <controls:SwimmingButton
+                    Height="40" Width="40"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Margin="20 0 20 0"
+                    Command="{Binding ShowingManager.ToWorkCommand}">
+                    <controls:SwimmingButton.ActiveContent>
+                        <Path
+                            Style="{StaticResource DoDelayButtonPathStyle}"
+                            Stroke="Black" />
+                    </controls:SwimmingButton.ActiveContent>
+                    <controls:SwimmingButton.PassiveContent>
+                        <Path
+                            Style="{StaticResource DoDelayButtonPathStyle}"
+                            Stroke="Gray" />
+                    </controls:SwimmingButton.PassiveContent>
+                </controls:SwimmingButton>
+            </Grid>
+
+            <controls:SwimmingButton
+                Width="30" Height="30"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="25 25 25 25"
+                Command="{Binding ShowingManager.DoDelayCommand}">
+                <controls:SwimmingButton.ActiveContent>
+                    <TextBlock
+                        Style="{StaticResource DoDelayButtonContentStyle}"
+                        Foreground="Black" />
+                </controls:SwimmingButton.ActiveContent>
+                <controls:SwimmingButton.PassiveContent>
+                    <TextBlock
+                        Style="{StaticResource DoDelayButtonContentStyle}"
+                        Foreground="Gray" />
+                </controls:SwimmingButton.PassiveContent>
+            </controls:SwimmingButton>
+        </Grid>
+    </Border>
+</Window>
