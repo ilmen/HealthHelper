@@ -40,7 +40,8 @@ namespace HealthWorkHelper.Classes
         public HideCommand(MainWindowViewModel model)
         {
             this.model = model;
-            this.model.ShowTimeChanged += (s, e) => CheckCanExecute();
+            // TODO: расскомментить или избавиться от класса
+            //this.model.ShowTimeChanged += (s, e) => CheckCanExecute();
 
             #region Initialize timer
             this.tmr = new DispatcherTimer();
@@ -57,7 +58,9 @@ namespace HealthWorkHelper.Classes
 
         public bool CanExecute(object parameter)
         {
-            return DateTime.Now >= model.ShowTime.AddSeconds(MainWindowViewModel.RestSecondsDuration);
+            //return DateTime.Now >= model.ShowTime.AddSeconds(MainWindowViewModel.RestSecondsDuration);
+            // TODO: расскомментить
+            return true;
         }
 
         public void Execute(object parameter)

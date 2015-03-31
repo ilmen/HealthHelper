@@ -51,7 +51,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Classes\SwimmingButton.xaml">
+    <Page Include="Controls\SwimmingButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -59,9 +59,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Classes\BackgroundProvider.cs" />
     <Compile Include="Classes\DelegateCommand.cs" />
     <Compile Include="Classes\HideCommand.cs" />
-    <Compile Include="Classes\SwimmingButton.xaml.cs">
+    <Compile Include="Classes\ShowingManager.cs" />
+    <Compile Include="Controls\SwimmingButton.xaml.cs">
       <DependentUpon>SwimmingButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\ViewModelBase.cs" />

@@ -14,20 +14,14 @@ namespace HealthWorkHelper
         [STAThread]
         static void Main(string[] args)
         {
-            var vm = new MainWindowViewModel();
-            var view = new MainWindow() { DataContext = vm };
+            var backgroundProvider = new BackgroundProvider();
 
-            while(true)
-            {
-                if (DateTime.Now >= showTime.AddSeconds(MainWindowViewModel.WorkSecondsDuration))
-                {
-                    view.ShowDialog();
-                    showTime = DateTime.Now;
-                }
+            var view = new MainWindow();
+            var showingManager = new ShowingManager(view);
+            var vm = new MainWindowViewModel(showingManager, backgroundProvider);
+            view.DataContext = vm;
 
-                System.Threading.Thread.Sleep(200);
-                System.Windows.Forms.Application.DoEvents();
-            }
+            showingManager.Start();
         }
     }
 }

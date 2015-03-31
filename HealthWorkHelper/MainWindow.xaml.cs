@@ -25,18 +25,5 @@ namespace HealthWorkHelper
         {
             InitializeComponent();
         }
-
-        private void rootLayout_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            if (!this.IsVisible) return;
-
-            var vm = this.DataContext as MainWindowViewModel;
-            if (vm != null) vm.UpdateShowTime();
-        }
-
-        private void rootLayout_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            e.Cancel = true;
-        }
     }
 }

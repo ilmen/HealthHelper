@@ -18,7 +18,7 @@ namespace HealthWorkHelper.Controls
     /// <summary>
     /// Interaction logic for SwimmingButton.xaml
     /// </summary>
-    public partial class SwimmingButton : UserControl
+    public partial class SwimmingButton : Button
     {
         public SwimmingButton()
         {
@@ -49,30 +49,6 @@ namespace HealthWorkHelper.Controls
         // Using a DependencyProperty as the backing store for PassiveContent.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PassiveContentProperty =
             DependencyProperty.Register("PassiveContent", typeof(object), typeof(SwimmingButton), new PropertyMetadata(null)); 
-        #endregion
-
-        #region DP - Command
-        public ICommand Command
-        {
-            get { return (ICommand)GetValue(CommandProperty); }
-            set { SetValue(CommandProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for Command.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty CommandProperty =
-            DependencyProperty.RegisterAttached("Command", typeof(ICommand), typeof(SwimmingButton), new PropertyMetadata(null)); 
-        #endregion
-
-        #region DP - CommandParameter
-        public object CommandParameter
-        {
-            get { return (object)GetValue(CommandParameterProperty); }
-            set { SetValue(CommandParameterProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for CommandParameter.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty CommandParameterProperty =
-            DependencyProperty.Register("CommandParameter", typeof(object), typeof(SwimmingButton), new PropertyMetadata(null));
         #endregion
     }
 }
