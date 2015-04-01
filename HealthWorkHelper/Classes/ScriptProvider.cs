@@ -7,8 +7,8 @@ namespace HealthWorkHelper.Classes
 {
     public class ScriptProvider
     {
-        public static readonly int DelaySecondsDuration = 5;
-        public static readonly int RelaxSecondsDuration = 10;
+        public static readonly int DelaySecondsDuration = 10;
+        public static readonly int RelaxSecondsDuration = 5;
         public static readonly int WorkSecondsDuration = 20;
 
         // время открытия = текущее + время смещения
@@ -39,7 +39,8 @@ namespace HealthWorkHelper.Classes
             storedWindow = window;
             storedWindow.Closing += (s, e) => e.Cancel = true;  // отменяем закрытие окна
 
-            OpenTime = DateTime.Now.AddSeconds(WorkSecondsDuration);
+            OpenTime = DateTime.Now;
+            if (!System.Diagnostics.Debugger.IsAttached) OpenTime = OpenTime.AddSeconds(WorkSecondsDuration);
             LastRelaxTime = DateTime.Now;
 
             ToWorkCommand = new TimedCommand(Showing)
@@ -69,7 +70,7 @@ namespace HealthWorkHelper.Classes
 
         public void Start()
         {
-            while(true)
+            while (true)
             {
                 if (OpenTime <= DateTime.Now)
                 {
