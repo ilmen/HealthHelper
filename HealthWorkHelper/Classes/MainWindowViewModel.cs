@@ -33,11 +33,19 @@ namespace HealthWorkHelper.Classes
         public ScriptProvider ScriptProvider
         { get; private set; }
 
-        public DateTime LastRelaxTime
+        public TimeSpan TimeInWork
         {
             get
             {
-                return ScriptProvider.LastRelaxTime;
+                return DateTime.Now - ScriptProvider.LastRelaxTime;
+            }
+        }
+
+        public TimeSpan DelayDuration
+        {
+            get
+            {
+                return ScriptProvider.DelayDuration;
             }
         }
 
@@ -47,7 +55,7 @@ namespace HealthWorkHelper.Classes
             this.ScriptProvider = scriptProvider;
             this.ScriptProvider.Showing += (s, e) =>
             {
-                RaisePropertyChange("LastRelaxTime");
+                RaisePropertyChange("TimeInWork");
                 this.Background = backgroundProvider.GetBackground();
             };
         }

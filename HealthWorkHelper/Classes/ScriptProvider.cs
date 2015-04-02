@@ -7,21 +7,43 @@ namespace HealthWorkHelper.Classes
 {
     public class ScriptProvider
     {
-        public static readonly int DelaySecondsDuration = 10;
-        public static readonly int RelaxSecondsDuration = 5;
-        public static readonly int WorkSecondsDuration = 20;
-
         // время открытия = текущее + время смещения
         // время смещения = время работы или время переноса
         // в классе 2 времени:
         //      время открытия (для ShowDialog)
         //      время последней зарядки - для UI
 
-        private Window storedWindow
-        { get; set; }
-
+        #region Fields & Properties
         private DateTime OpenTime
         { get; set; }
+
+        private Window StoredWindow
+        { get; set; }
+
+        private IScriptManagerSettingProvider StoredSettingProvider
+        { get; set; }
+
+        public TimeSpan DelayDuration
+        {
+            get
+            {
+                return StoredSettingProvider.DelayDuration;
+            }
+        }
+        public TimeSpan RelaxDuration
+        {
+            get
+            {
+                return StoredSettingProvider.RelaxDuration;
+            }
+        }
+        public TimeSpan WorkDuration
+        {
+            get
+            {
+                return StoredSettingProvider.WorkDuration;
+            }
+        }
 
         public DateTime LastRelaxTime
         { get; private set; }
@@ -32,20 +54,23 @@ namespace HealthWorkHelper.Classes
         { get; private set; }
 
         public ICommand DoDelayCommand
-        { get; private set; }
+        { get; private set; } 
+        #endregion
 
-        public ScriptProvider(Window window)
+        public ScriptProvider(IScriptManagerSettingProvider settingProvider, Window window)
         {
-            storedWindow = window;
-            storedWindow.Closing += (s, e) => e.Cancel = true;  // отменяем закрытие окна
+            StoredSettingProvider = settingProvider;
+
+            StoredWindow = window;
+            StoredWindow.Closing += (s, e) => e.Cancel = true;  // отменяем закрытие окна
 
             OpenTime = DateTime.Now;
-            if (!System.Diagnostics.Debugger.IsAttached) OpenTime = OpenTime.AddSeconds(WorkSecondsDuration);
+            if (!System.Diagnostics.Debugger.IsAttached) OpenTime = OpenTime.Add(WorkDuration);
             LastRelaxTime = DateTime.Now;
 
             ToWorkCommand = new TimedCommand(Showing)
             {
-                CanExecuteFunc = () => OpenTime.AddSeconds(RelaxSecondsDuration) <= DateTime.Now,
+                CanExecuteFunc = () => OpenTime.Add(RelaxDuration) <= DateTime.Now,
                 CommandAction = () => ToWork()
             };
 
@@ -57,15 +82,15 @@ namespace HealthWorkHelper.Classes
 
         private void ToWork()
         {
-            OpenTime = DateTime.Now.AddSeconds(WorkSecondsDuration);
+            OpenTime = DateTime.Now.Add(WorkDuration);
             LastRelaxTime = DateTime.Now;
-            storedWindow.Hide();
+            StoredWindow.Hide();
         }
 
         private void DoDelay()
         {
-            OpenTime = DateTime.Now.AddSeconds(DelaySecondsDuration);
-            storedWindow.Hide();
+            OpenTime = DateTime.Now.Add(DelayDuration);
+            StoredWindow.Hide();
         }
 
         public void Start()
@@ -75,7 +100,7 @@ namespace HealthWorkHelper.Classes
                 if (OpenTime <= DateTime.Now)
                 {
                     Showing(this, new EventArgs());
-                    storedWindow.ShowDialog();
+                    StoredWindow.ShowDialog();
                 }
 
                 System.Threading.Thread.Sleep(200);

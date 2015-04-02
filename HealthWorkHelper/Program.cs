@@ -15,9 +15,10 @@ namespace HealthWorkHelper
         static void Main(string[] args)
         {
             var backgroundProvider = new BackgroundProvider();
+            var settingProvider = new ScriptManagerSettingProvider();
 
             var view = new MainWindow();
-            var scriptProvider = new ScriptProvider(view);
+            var scriptProvider = new ScriptProvider(settingProvider, view);
             var vm = new MainWindowViewModel(scriptProvider, backgroundProvider);
             view.DataContext = vm;
 
