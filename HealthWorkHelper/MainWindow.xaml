@@ -115,11 +115,14 @@
                 </controls:SwimmingButton.PassiveContent>
             </controls:SwimmingButton>
 
-            <!--<controls:WaitButtonContext
+            <Border
                 Grid.Row="0"
-                Background="AntiqueWhite"
+                BorderThickness="2"
+                BorderBrush="Silver"
                 Height="200"
-                Width="200" />-->
+                Width="200">
+                <controls:WaitButtonContext />
+            </Border>
         </Grid>
     </Border>
 </Window>
