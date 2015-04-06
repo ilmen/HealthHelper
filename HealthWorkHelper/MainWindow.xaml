@@ -114,6 +114,12 @@
                         Foreground="Gray" />
                 </controls:SwimmingButton.PassiveContent>
             </controls:SwimmingButton>
+
+            <!--<controls:WaitButtonContext
+                Grid.Row="0"
+                Background="AntiqueWhite"
+                Height="200"
+                Width="200" />-->
         </Grid>
     </Border>
 </Window>

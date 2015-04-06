@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HealthWorkHelper.Classes
+namespace HealthWorkHelper.Classes.ScriptProviderNamespace
 {
     public class ScriptManagerSettingProvider : IScriptManagerSettingProvider
     {

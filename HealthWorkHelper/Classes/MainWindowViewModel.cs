@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using HealthWorkHelper.Classes.ScriptProviderNamespace;
 
 namespace HealthWorkHelper.Classes
 {
@@ -53,7 +54,7 @@ namespace HealthWorkHelper.Classes
         {
             this.backgroundProvider = backgroundProvider;
             this.ScriptProvider = scriptProvider;
-            this.ScriptProvider.Showing += (s, e) =>
+            this.ScriptProvider.OnShowing += (s, e) =>
             {
                 RaisePropertyChange("TimeInWork");
                 this.Background = backgroundProvider.GetBackground();
