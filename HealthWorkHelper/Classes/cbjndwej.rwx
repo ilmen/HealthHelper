@@ -1,0 +1,45 @@
+﻿using HealthWorkHelper.Classes.ScriptProvider;
+using System
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace HealthWorkHelper.Classes
+{
+    public class TaskIconManager
+    {
+        private NotifyIcon icon;
+        private ITimeToRelaxProvider timeToRelaxProvider;
+
+        public TaskIconManager(ITimeToRelaxProvider timeToRelaxProvider)
+	    {
+            this.timeToRelaxProvider = timeToRelaxProvider;
+
+            icon = new NotifyIcon();
+            icon.Text = "HealthWorkHelper";
+            icon.BalloonTipShown += (s, e) =>
+                {
+                    icon.BalloonTipTitle = "Разомнись через..."
+
+                };
+	    }
+
+        public void ShowIcon()
+        {
+            
+        }
+
+        public void ShowDelayIcon()
+        {
+
+        }
+
+        public void ShowWorkIcon()
+        {
+
+        }
+    }
+}
