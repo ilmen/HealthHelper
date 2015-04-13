@@ -97,6 +97,27 @@
                 </controls:SwimmingButton>
             </Grid>
 
+            <!--<Path
+                StrokeThickness="2"
+                Stroke="Black"
+                Height="200" Width="200">
+                <Path.Data>-->
+                    <!--<PathGeometry
+                        Figures="M 100 100 l 100 0 a 100 100 60 0 1 -50 86 Z" />-->
+                    <!--<PathGeometry
+                        Figures="M 100 100 l 100 0 a 100 100 60 0 1 -50 86.6 Z" />-->
+                    <!--<PathGeometry>
+                        <PathFigure>
+                            <ArcSegmento
+                                Size="100 100"
+                                RotationAngle="60"
+                                Point="0 0"
+                                SweepDirection="Clockwise"/>
+                        </PathFigure>
+                    </PathGeometry>-->
+                <!--</Path.Data>
+            </Path>-->
+            
             <controls:SwimmingButton
                 Width="30" Height="30"
                 HorizontalAlignment="Right"
@@ -115,14 +136,14 @@
                 </controls:SwimmingButton.PassiveContent>
             </controls:SwimmingButton>
 
-            <Border
+            <!--<Border
                 Grid.Row="0"
                 BorderThickness="2"
                 BorderBrush="Silver"
                 Height="200"
                 Width="200">
                 <controls:WaitButtonContext />
-            </Border>
+            </Border>-->
         </Grid>
     </Border>
 </Window>

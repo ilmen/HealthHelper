@@ -6,8 +6,6 @@ namespace HealthWorkHelper
 {
     class Program
     {
-        static DateTime showTime = DateTime.MinValue;
-
         [STAThread]
         static void Main(string[] args)
         {
@@ -19,7 +17,7 @@ namespace HealthWorkHelper
             var vm = new MainWindowViewModel(scriptProvider, backgroundProvider);
             view.DataContext = vm;
 
-            var iconManager = new TaskIconManager(scriptProvider);
+            var iconManager = new TaskIconManager(settingProvider, scriptProvider);
             iconManager.ShowWorkIcon();
 
             scriptProvider.Start();

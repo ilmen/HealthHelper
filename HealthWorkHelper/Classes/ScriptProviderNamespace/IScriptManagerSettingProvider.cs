@@ -14,6 +14,7 @@ namespace HealthWorkHelper.Classes.ScriptProviderNamespace
         { get; }
         TimeSpan WorkDuration
         { get; }
-
+        TimeSpan TimeToRelaxRemindDuration
+        { get; }
     }
 }

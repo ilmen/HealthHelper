@@ -7,27 +7,61 @@ namespace HealthWorkHelper.Classes
 {
     public class TaskIconManager
     {
-        // NotifyIcon не отображается, если нет контейнера для иконки - лечим это
         private FakeContainer iconContainer = new FakeContainer();
         private NotifyIcon icon;
+        private IScriptManagerSettingProvider settingProvider;
         private ITimeToRelaxProvider timeToRelaxProvider;
+        private bool cancelRemindTimeToRelax;
 
-        public TaskIconManager(ITimeToRelaxProvider timeToRelaxProvider)
+        public TaskIconManager(IScriptManagerSettingProvider settingProvider, ITimeToRelaxProvider timeToRelaxProvider)
 	    {
+            this.settingProvider = settingProvider;
+
             this.timeToRelaxProvider = timeToRelaxProvider;
 
-            this.timeToRelaxProvider.OnWork += (s, e) => ShowWorkIcon();
+            this.timeToRelaxProvider.OnWork += (s, e) =>
+                {
+                    ShowWorkIcon();
+                    RunTimeToRelaxReminder();
+                };
+            
             this.timeToRelaxProvider.OnDelay += (s, e) => ShowDelayIcon();
-            this.timeToRelaxProvider.OnShowing += (s, e) => ShowRelaxIcon();
+            
+            this.timeToRelaxProvider.OnShowing += (s, e) =>
+                {
+                    cancelRemindTimeToRelax = true;
+                    ShowRelaxIcon();
+                };
 
-            icon = new NotifyIcon(iconContainer);
-            icon.Icon = new Icon(System.IO.Directory.GetCurrentDirectory() + "/Red.ico");
-            icon.Text = "HealthWorkHelper";
-            icon.BalloonTipTitle = " ";
-            icon.BalloonTipText = " ";
-            icon.Visible = true;
+            icon = new NotifyIcon(iconContainer)    // NotifyIcon не отображается, если нет контейнера для иконки - лечим это
+            {
+                Icon  = new Icon(System.IO.Directory.GetCurrentDirectory() + "/Red.ico"),
+                Text = "HealthWorkHelper",
+                BalloonTipText = " ",
+                BalloonTipTitle = " ",
+                Visible = true,
+            };
             icon.Click += (s, e) => ShowWorkIcon();
 	    }
+
+        private void RunTimeToRelaxReminder()
+        {
+            cancelRemindTimeToRelax = false;
+            var timer = new System.Timers.Timer(settingProvider.TimeToRelaxRemindDuration.TotalMilliseconds) { AutoReset = false };
+            timer.Elapsed += (ts, te) =>
+            {
+                if (!cancelRemindTimeToRelax)
+                {
+                    ShowWorkIcon();
+                    timer.Start();
+                }
+                else
+                {
+                    timer.Dispose();
+                }
+            };
+            timer.Start();
+        }
 
         /// <summary>
         /// Отображение иконки во время зарядки (отображение окна)
@@ -67,6 +101,7 @@ namespace HealthWorkHelper.Classes
         }
     }
 
+    #region Fake UI container
     public class FakeContainer : IContainer
     {
         ComponentCollection components;
@@ -91,6 +126,6 @@ namespace HealthWorkHelper.Classes
         public void Remove(IComponent component) { }
 
         public void Dispose() { }
-    }
-
+    } 
+    #endregion
 }

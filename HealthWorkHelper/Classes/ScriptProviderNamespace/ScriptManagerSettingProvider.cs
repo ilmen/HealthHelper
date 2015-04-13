@@ -17,6 +17,9 @@ namespace HealthWorkHelper.Classes.ScriptProviderNamespace
         public TimeSpan WorkDuration
         { get; private set; }
 
+        public TimeSpan TimeToRelaxRemindDuration
+        { get; private set; }
+
         public ScriptManagerSettingProvider()
         {
             if (System.Diagnostics.Debugger.IsAttached)
@@ -24,12 +27,14 @@ namespace HealthWorkHelper.Classes.ScriptProviderNamespace
                 this.DelayDuration = TimeSpan.FromSeconds(10);
                 this.RelaxDuration = TimeSpan.FromSeconds(5);
                 this.WorkDuration = TimeSpan.FromSeconds(20);
+                this.TimeToRelaxRemindDuration = TimeSpan.FromSeconds(5);
             }
             else
             {
                 this.DelayDuration = Properties.Settings.Default.DelayDuration;
                 this.RelaxDuration = Properties.Settings.Default.RelaxDuration;
                 this.WorkDuration = Properties.Settings.Default.WorkDuration;
+                this.TimeToRelaxRemindDuration = Properties.Settings.Default.TimeToRelaxRemindDuration;
             }
         }
     }
