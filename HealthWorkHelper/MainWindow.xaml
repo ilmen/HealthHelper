@@ -22,7 +22,7 @@
                 <Style x:Key="DoDelayButtonContentStyle" TargetType="TextBlock">
                     <Setter Property="FontFamily" Value="Tahoma" />
                     <Setter Property="FontSize" Value="9" />
-                    <Setter Property="Text" Value="{Binding Path=DelayDuration, StringFormat=+{0}, Converter={StaticResource TimeSpanToIntConverter}}" />
+                    <Setter Property="Text" Value="{Binding Path=DelayDuration, StringFormat=+{0:0}, Converter={StaticResource TimeSpanToIntConverter}}" />
                     <Setter Property="FontWeight" Value="Bold" />
                 </Style>
                 <Style x:Key="DoDelayButtonPathStyle" TargetType="Path">
@@ -74,7 +74,8 @@
                     <TextBlock.Text>
                         <Binding
                             Path="TimeInWork"
-                            StringFormat="Прошло {0:mm} минут..." />
+                            StringFormat="Прошло {0:0} минут..."
+                            Converter="{StaticResource TimeSpanToIntConverter}"/>
                     </TextBlock.Text>
                 </TextBlock>
 
