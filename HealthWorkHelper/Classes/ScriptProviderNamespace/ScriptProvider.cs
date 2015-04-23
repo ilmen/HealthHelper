@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace HealthWorkHelper.Classes.ScriptProviderNamespace
 {
-    public class ScriptProvider : ITimeToRelaxProvider
+    public class ScriptProvider : ITimingProvider
     {
         // время открытия = текущее + время смещения
         // время смещения = время работы или время переноса

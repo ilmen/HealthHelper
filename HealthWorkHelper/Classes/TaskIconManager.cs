@@ -10,24 +10,24 @@ namespace HealthWorkHelper.Classes
         private FakeContainer iconContainer = new FakeContainer();
         private NotifyIcon icon;
         private IScriptManagerSettingProvider settingProvider;
-        private ITimeToRelaxProvider timeToRelaxProvider;
+        private ITimingProvider timingProvider;
         private bool cancelRemindTimeToRelax;
 
-        public TaskIconManager(IScriptManagerSettingProvider settingProvider, ITimeToRelaxProvider timeToRelaxProvider)
+        public TaskIconManager(IScriptManagerSettingProvider settingProvider, ITimingProvider timeToRelaxProvider)
 	    {
             this.settingProvider = settingProvider;
 
-            this.timeToRelaxProvider = timeToRelaxProvider;
+            this.timingProvider = timeToRelaxProvider;
 
-            this.timeToRelaxProvider.OnWork += (s, e) =>
+            this.timingProvider.OnWork += (s, e) =>
                 {
                     ShowWorkIcon();
                     RunTimeToRelaxReminder();
                 };
             
-            this.timeToRelaxProvider.OnDelay += (s, e) => ShowDelayIcon();
+            this.timingProvider.OnDelay += (s, e) => ShowDelayIcon();
             
-            this.timeToRelaxProvider.OnShowing += (s, e) =>
+            this.timingProvider.OnShowing += (s, e) =>
                 {
                     cancelRemindTimeToRelax = true;
                     ShowRelaxIcon();
@@ -88,7 +88,7 @@ namespace HealthWorkHelper.Classes
         /// </summary>
         public void ShowWorkIcon()
         {
-            var timeToRelax = timeToRelaxProvider.GetTimeToRelax().TotalMinutes.ToString("F0");
+            var timeToRelax = timingProvider.GetTimeToRelax().TotalMinutes.ToString("F0");
 
             icon.BalloonTipTitle = "И снова - работаем...";
             icon.BalloonTipText = "Запасись терпением...\r\nИли почитай чего-нибудь умное...\r\nСледующая передышка будет через " + timeToRelax + " мин.";
