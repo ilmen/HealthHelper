@@ -67,6 +67,7 @@
     <Compile Include="Classes\Commands\CommandBase.cs" />
     <Compile Include="Classes\Commands\TimedCommand.cs" />
     <Compile Include="Classes\Commands\DelegateCommand.cs" />
+    <Compile Include="Classes\Converters\TimeSpanToIntegerConverter.cs" />
     <Compile Include="Classes\ScriptProviderNamespace\IScriptManagerSettingProvider.cs" />
     <Compile Include="Classes\ScriptProviderNamespace\ITimeToRelaxProvider.cs" />
     <Compile Include="Classes\ScriptProviderNamespace\ScriptManagerSettingProvider.cs" />
