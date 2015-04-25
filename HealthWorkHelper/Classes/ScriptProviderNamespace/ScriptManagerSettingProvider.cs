@@ -8,7 +8,10 @@ namespace HealthWorkHelper.Classes.ScriptProviderNamespace
 {
     public class ScriptManagerSettingProvider : IScriptManagerSettingProvider
     {
-        public TimeSpan DelayDuration
+        public TimeSpan MinDelayDuration
+        { get; private set; }
+
+        public TimeSpan MaxDelayDuration
         { get; private set; }
 
         public TimeSpan RelaxDuration
@@ -24,17 +27,18 @@ namespace HealthWorkHelper.Classes.ScriptProviderNamespace
         {
             if (System.Diagnostics.Debugger.IsAttached)
             {
-                this.DelayDuration = TimeSpan.FromSeconds(10);
-                this.RelaxDuration = TimeSpan.FromSeconds(5);
-                this.WorkDuration = TimeSpan.FromSeconds(20);
+                this.MinDelayDuration = TimeSpan.FromSeconds(2);
+                this.MaxDelayDuration = TimeSpan.FromSeconds(12);
+                this.RelaxDuration = TimeSpan.FromSeconds(10);
+                this.WorkDuration = TimeSpan.FromSeconds(60);
                 this.TimeToRelaxRemindDuration = TimeSpan.FromSeconds(5);
             }
             else
             {
-                this.DelayDuration = Properties.Settings.Default.DelayDuration;
+                this.MinDelayDuration = Properties.Settings.Default.MinDelayDuration;
+                this.MaxDelayDuration = Properties.Settings.Default.MaxDelayDuration;
                 this.RelaxDuration = Properties.Settings.Default.RelaxDuration;
                 this.WorkDuration = Properties.Settings.Default.WorkDuration;
-                this.TimeToRelaxRemindDuration = Properties.Settings.Default.TimeToRelaxRemindDuration;
             }
         }
     }

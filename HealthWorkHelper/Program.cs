@@ -1,5 +1,6 @@
 ﻿using HealthWorkHelper.Classes;
 using HealthWorkHelper.Classes.ScriptProviderNamespace;
+using HealthWorkHelper.Classes.TaskIconClasses;
 using System;
 
 namespace HealthWorkHelper
@@ -17,8 +18,7 @@ namespace HealthWorkHelper
             var vm = new MainWindowViewModel(scriptProvider, backgroundProvider);
             view.DataContext = vm;
 
-            var iconManager = new TaskIconManager(settingProvider, scriptProvider);
-            iconManager.ShowWorkIcon();
+            var iconManager = new TaskIconManager(scriptProvider, settingProvider);
 
             scriptProvider.Start();
         }

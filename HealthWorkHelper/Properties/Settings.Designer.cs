@@ -25,13 +25,13 @@ namespace HealthWorkHelper.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("00:01:00")]
-        public global::System.TimeSpan DelayDuration {
+        [global::System.Configuration.DefaultSettingValueAttribute("00:05:00")]
+        public global::System.TimeSpan MaxDelayDuration {
             get {
-                return ((global::System.TimeSpan)(this["DelayDuration"]));
+                return ((global::System.TimeSpan)(this["MaxDelayDuration"]));
             }
             set {
-                this["DelayDuration"] = value;
+                this["MaxDelayDuration"] = value;
             }
         }
         
@@ -61,13 +61,13 @@ namespace HealthWorkHelper.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("00:10:00")]
-        public global::System.TimeSpan TimeToRelaxRemindDuration {
+        [global::System.Configuration.DefaultSettingValueAttribute("00:01:00")]
+        public global::System.TimeSpan MinDelayDuration {
             get {
-                return ((global::System.TimeSpan)(this["TimeToRelaxRemindDuration"]));
+                return ((global::System.TimeSpan)(this["MinDelayDuration"]));
             }
             set {
-                this["TimeToRelaxRemindDuration"] = value;
+                this["MinDelayDuration"] = value;
             }
         }
     }

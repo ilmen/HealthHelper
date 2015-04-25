@@ -57,6 +57,7 @@ namespace HealthWorkHelper.Classes
             this.ScriptProvider.OnShowing += (s, e) =>
             {
                 RaisePropertyChange("TimeInWork");
+                RaisePropertyChange("DelayDuration");
                 this.Background = backgroundProvider.GetBackground();
             };
         }

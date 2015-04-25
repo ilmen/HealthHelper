@@ -67,12 +67,18 @@
     <Compile Include="Classes\Commands\CommandBase.cs" />
     <Compile Include="Classes\Commands\TimedCommand.cs" />
     <Compile Include="Classes\Commands\DelegateCommand.cs" />
+    <Compile Include="Classes\Converters\TimeSpanToStringConverter.cs" />
     <Compile Include="Classes\Converters\TimeSpanToIntegerConverter.cs" />
     <Compile Include="Classes\ScriptProviderNamespace\IScriptManagerSettingProvider.cs" />
     <Compile Include="Classes\ScriptProviderNamespace\ITimeToRelaxProvider.cs" />
     <Compile Include="Classes\ScriptProviderNamespace\ScriptManagerSettingProvider.cs" />
     <Compile Include="Classes\ScriptProviderNamespace\ScriptProvider.cs" />
-    <Compile Include="Classes\TaskIconManager.cs" />
+    <Compile Include="Classes\SmartEnding.cs" />
+    <Compile Include="Classes\TaskIconClasses\TaskIconManager.cs" />
+    <Compile Include="Classes\TaskIconClasses\TaskIconStates\DelayingState.cs" />
+    <Compile Include="Classes\TaskIconClasses\TaskIconStates\AbstractTaskIconState.cs" />
+    <Compile Include="Classes\TaskIconClasses\TaskIconStates\WorkingState.cs" />
+    <Compile Include="Classes\TaskIconClasses\TaskIconStates\RelaxState.cs" />
     <Compile Include="Controls\SwimmingButton.xaml.cs">
       <DependentUpon>SwimmingButton.xaml</DependentUpon>
     </Compile>

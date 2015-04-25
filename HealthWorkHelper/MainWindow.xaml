@@ -8,9 +8,10 @@
         WindowStartupLocation="CenterScreen"
         Topmost="True"
         WindowStyle="None"
-        Height="450" Width="350">
+        Width="350" Height="450">
     <Window.Resources>
-        <converters:TimeSpanToIntegerConverter x:Key="TimeSpanToIntConverter" />
+        <converters:TimeSpanToIntegerConverter x:Key="TimeSpanToNumeralConverter" />
+        <converters:TimeSpanToStringConverter x:Key="TimeSpanToStringConverter" />
         <DropShadowEffect x:Key="EffectZIndex1" ShadowDepth="0" Opacity="0.4" BlurRadius="10"/>
         <DropShadowEffect x:Key="EffectZIndex2" ShadowDepth="0" Opacity="0.6" BlurRadius="20"/>
     </Window.Resources>
@@ -22,7 +23,7 @@
                 <Style x:Key="DoDelayButtonContentStyle" TargetType="TextBlock">
                     <Setter Property="FontFamily" Value="Tahoma" />
                     <Setter Property="FontSize" Value="9" />
-                    <Setter Property="Text" Value="{Binding Path=DelayDuration, StringFormat=+{0:0}, Converter={StaticResource TimeSpanToIntConverter}}" />
+                    <Setter Property="Text" Value="{Binding Path=DelayDuration, StringFormat=+{0:0}, Converter={StaticResource TimeSpanToNumeralConverter}}" />
                     <Setter Property="FontWeight" Value="Bold" />
                 </Style>
                 <Style x:Key="DoDelayButtonPathStyle" TargetType="Path">
@@ -48,18 +49,18 @@
             <Image
                 Grid.RowSpan="2"
                 Source="{Binding Background}"/>
-            
+
             <Grid Grid.Row="1">
                 <Border
                     Background="Black"
                     Opacity="0.15">
                     <!--<Border.OpacityMask>
-                        <LinearGradientBrush>
-                            <GradientStop Color="Silver" Offset="0.0" />
-                            <GradientStop Color="Gray" Offset="0.6" />
-                            <GradientStop Color="Black" Offset="1.0" />
-                        </LinearGradientBrush>
-                    </Border.OpacityMask>-->
+                            <LinearGradientBrush>
+                                <GradientStop Color="Silver" Offset="0.0" />
+                                <GradientStop Color="Gray" Offset="0.6" />
+                                <GradientStop Color="Black" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Border.OpacityMask>-->
                 </Border>
 
                 <TextBlock
@@ -74,17 +75,17 @@
                     <TextBlock.Text>
                         <Binding
                             Path="TimeInWork"
-                            StringFormat="Прошло {0:0} минут..."
-                            Converter="{StaticResource TimeSpanToIntConverter}"/>
+                            StringFormat="Прошло: {0}..."
+                            Converter="{StaticResource TimeSpanToStringConverter}"/>
                     </TextBlock.Text>
                 </TextBlock>
 
                 <controls:SwimmingButton
-                    Height="40" Width="40"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Center"
-                    Margin="0,30,20,28"
-                    Command="{Binding ScriptProvider.ToWorkCommand}">
+                        Height="40" Width="40"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Margin="0,30,20,28"
+                        Command="{Binding ScriptProvider.ToWorkCommand}">
                     <controls:SwimmingButton.ActiveContent>
                         <Path
                             Style="{StaticResource DoDelayButtonPathStyle}"
@@ -98,27 +99,6 @@
                 </controls:SwimmingButton>
             </Grid>
 
-            <!--<Path
-                StrokeThickness="2"
-                Stroke="Black"
-                Height="200" Width="200">
-                <Path.Data>-->
-                    <!--<PathGeometry
-                        Figures="M 100 100 l 100 0 a 100 100 60 0 1 -50 86 Z" />-->
-                    <!--<PathGeometry
-                        Figures="M 100 100 l 100 0 a 100 100 60 0 1 -50 86.6 Z" />-->
-                    <!--<PathGeometry>
-                        <PathFigure>
-                            <ArcSegmento
-                                Size="100 100"
-                                RotationAngle="60"
-                                Point="0 0"
-                                SweepDirection="Clockwise"/>
-                        </PathFigure>
-                    </PathGeometry>-->
-                <!--</Path.Data>
-            </Path>-->
-            
             <controls:SwimmingButton
                 Width="30" Height="30"
                 HorizontalAlignment="Right"
@@ -136,15 +116,6 @@
                         Foreground="Gray" />
                 </controls:SwimmingButton.PassiveContent>
             </controls:SwimmingButton>
-
-            <!--<Border
-                Grid.Row="0"
-                BorderThickness="2"
-                BorderBrush="Silver"
-                Height="200"
-                Width="200">
-                <controls:WaitButtonContext />
-            </Border>-->
         </Grid>
     </Border>
 </Window>

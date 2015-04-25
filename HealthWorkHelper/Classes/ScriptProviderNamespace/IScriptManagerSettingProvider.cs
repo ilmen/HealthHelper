@@ -8,13 +8,16 @@ namespace HealthWorkHelper.Classes.ScriptProviderNamespace
 {
     public interface IScriptManagerSettingProvider
     {
-        TimeSpan DelayDuration
+        TimeSpan MinDelayDuration
         { get; }
+
+        TimeSpan MaxDelayDuration
+        { get; }
+
         TimeSpan RelaxDuration
         { get; }
+
         TimeSpan WorkDuration
-        { get; }
-        TimeSpan TimeToRelaxRemindDuration
         { get; }
     }
 }

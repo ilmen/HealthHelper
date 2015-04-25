@@ -1,9 +1,10 @@
 ﻿using HealthWorkHelper.Classes.ScriptProviderNamespace;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace HealthWorkHelper.Classes
+namespace HealthWorkHelper.Classes.TaskIconClasses
 {
     public class TaskIconManager
     {
@@ -18,6 +19,8 @@ namespace HealthWorkHelper.Classes
             this.settingProvider = settingProvider;
 
             this.timeToRelaxProvider = timeToRelaxProvider;
+
+            // TODO: реализовать машину состояний для контекстного меню
 
             this.timeToRelaxProvider.OnWork += (s, e) =>
                 {
@@ -88,11 +91,18 @@ namespace HealthWorkHelper.Classes
         /// </summary>
         public void ShowWorkIcon()
         {
-            var timeToRelax = timeToRelaxProvider.GetTimeToRelax().TotalMinutes.ToString("F0");
+            var timeSpanToRelax = timeToRelaxProvider.GetTimeToRelax();
+            var timeToRelax = TimeSpanToString(timeSpanToRelax);
 
             icon.BalloonTipTitle = "И снова - работаем...";
-            icon.BalloonTipText = "Запасись терпением...\r\nИли почитай чего-нибудь умное...\r\nСледующая передышка будет через " + timeToRelax + " мин.";
+            icon.BalloonTipText = "Запасись терпением...\r\nИли почитай чего-нибудь умное...\r\nСледующая передышка будет через " + timeToRelax + ".";
             ShowBallonToolTip();
+        }
+
+        private string TimeSpanToString(TimeSpan timeSpan)
+        {
+            var timeSpanConverter = new HealthWorkHelper.Classes.Converters.TimeSpanToStringConverter();
+            return (string)timeSpanConverter.Convert(timeSpan, typeof(string), null, System.Globalization.CultureInfo.CurrentCulture);
         }
 
         private void ShowBallonToolTip()

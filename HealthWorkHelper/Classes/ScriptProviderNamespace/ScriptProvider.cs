@@ -22,12 +22,22 @@ namespace HealthWorkHelper.Classes.ScriptProviderNamespace
 
         private IScriptManagerSettingProvider StoredSettingProvider
         { get; set; }
+        
+        /// <summary>
+        /// Коэффициент времени для расчета промежутка, на который откладывается отдых.
+        /// Промежуток считается так: MinDelayTime + (MaxDelayTime - MinDelayTime) * коэффициент
+        /// </summary>
+        private readonly double[] delayPeriods = new double[] { 1, 0.5, 0.25, 0 };
+
+        private int delayPeriodsIndex = 0;
 
         public TimeSpan DelayDuration
         {
             get
             {
-                return StoredSettingProvider.DelayDuration;
+                var delta = StoredSettingProvider.MaxDelayDuration - StoredSettingProvider.MinDelayDuration;
+                var offset = TimeSpan.FromSeconds(delta.Seconds * delayPeriods[delayPeriodsIndex]);
+                return StoredSettingProvider.MinDelayDuration + offset;
             }
         }
         public TimeSpan RelaxDuration
@@ -87,6 +97,7 @@ namespace HealthWorkHelper.Classes.ScriptProviderNamespace
             OpenTime = DateTime.Now.Add(WorkDuration);
             LastRelaxTime = DateTime.Now;
             StoredWindow.Hide();
+            delayPeriodsIndex = 0;
 
             OnWork(this, new EventArgs());
         }
@@ -95,6 +106,7 @@ namespace HealthWorkHelper.Classes.ScriptProviderNamespace
         {
             OpenTime = DateTime.Now.Add(DelayDuration);
             StoredWindow.Hide();
+            if (delayPeriodsIndex < delayPeriods.Length - 1) delayPeriodsIndex++;   // получаем посл-ть: 0, 1, 2, 3, 3, 3, ...
 
             OnDelay(this, new EventArgs());
         }

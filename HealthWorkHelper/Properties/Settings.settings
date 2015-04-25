@@ -2,8 +2,8 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="HealthWorkHelper.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="DelayDuration" Type="System.TimeSpan" Scope="User">
-      <Value Profile="(Default)">00:01:00</Value>
+    <Setting Name="MaxDelayDuration" Type="System.TimeSpan" Scope="User">
+      <Value Profile="(Default)">00:05:00</Value>
     </Setting>
     <Setting Name="RelaxDuration" Type="System.TimeSpan" Scope="User">
       <Value Profile="(Default)">00:02:00</Value>
@@ -11,8 +11,8 @@
     <Setting Name="WorkDuration" Type="System.TimeSpan" Scope="User">
       <Value Profile="(Default)">00:30:00</Value>
     </Setting>
-    <Setting Name="TimeToRelaxRemindDuration" Type="System.TimeSpan" Scope="User">
-      <Value Profile="(Default)">00:10:00</Value>
+    <Setting Name="MinDelayDuration" Type="System.TimeSpan" Scope="User">
+      <Value Profile="(Default)">00:01:00</Value>
     </Setting>
   </Settings>
 </SettingsFile>
