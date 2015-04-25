@@ -7,7 +7,7 @@ namespace HealthWorkHelper.Classes.TaskIconClasses.TaskIconStates
 {
     public class WorkingState : AbstractTaskIconState
     {
-        private TaskIconManager taskIconManager;
+        private ITaskIconStateMachine taskIconManager;
         private IScriptManagerSettingProvider timingProvider;
         private DispatcherTimer showBalloonTimer;
         private DateTime lastActivateTime;
@@ -28,7 +28,7 @@ namespace HealthWorkHelper.Classes.TaskIconClasses.TaskIconStates
         private readonly double[] showBalloonPeriods = new double[] { 0.6667, 0.4444, 0.2222, 0.1556, 0.0889, 0.0444, 0.0222 };
         private int showBalloonPeriodsIndex;
 
-        public WorkingState(TaskIconManager taskIconManager, IScriptManagerSettingProvider timingProvider)
+        public WorkingState(ITaskIconStateMachine taskIconManager, IScriptManagerSettingProvider timingProvider)
         {
             this.taskIconManager = taskIconManager;
             this.timingProvider = timingProvider;

@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace HealthWorkHelper.Classes.TaskIconClasses
 {
-    public class TaskIconManager
+    public class TaskIconManager : ITaskIconStateMachine
     {
         private FakeContainer iconContainer = new FakeContainer();
         private NotifyIcon icon;
@@ -25,11 +25,11 @@ namespace HealthWorkHelper.Classes.TaskIconClasses
         public AbstractTaskIconState CurrentState
         { get; private set; }
 
-        public ITimeToRelaxProvider TimeToRelaxProvider
+        public ITimingProvider TimeToRelaxProvider
         { get; private set; }
         #endregion
 
-        public TaskIconManager(ITimeToRelaxProvider timeToRelaxProvider, IScriptManagerSettingProvider timingProvider)
+        public TaskIconManager(ITimingProvider timeToRelaxProvider, IScriptManagerSettingProvider timingProvider)
 	    {
             this.TimeToRelaxProvider = timeToRelaxProvider;
 

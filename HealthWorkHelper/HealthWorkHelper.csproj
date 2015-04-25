@@ -74,6 +74,7 @@
     <Compile Include="Classes\ScriptProviderNamespace\ScriptManagerSettingProvider.cs" />
     <Compile Include="Classes\ScriptProviderNamespace\ScriptProvider.cs" />
     <Compile Include="Classes\SmartEnding.cs" />
+    <Compile Include="Classes\TaskIconClasses\ITaskIconStateMachine.cs" />
     <Compile Include="Classes\TaskIconClasses\TaskIconManager.cs" />
     <Compile Include="Classes\TaskIconClasses\TaskIconStates\DelayingState.cs" />
     <Compile Include="Classes\TaskIconClasses\TaskIconStates\AbstractTaskIconState.cs" />

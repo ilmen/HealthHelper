@@ -2,9 +2,9 @@
 {
     public class RelaxState : AbstractTaskIconState
     {
-        private TaskIconManager taskIconManager;
+        private ITaskIconStateMachine taskIconManager;
 
-        public RelaxState(TaskIconManager taskIconManager)
+        public RelaxState(ITaskIconStateMachine taskIconManager)
         {
             this.taskIconManager = taskIconManager;
         }

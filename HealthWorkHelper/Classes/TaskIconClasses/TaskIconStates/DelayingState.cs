@@ -6,9 +6,9 @@ namespace HealthWorkHelper.Classes.TaskIconClasses.TaskIconStates
 {
     public class DelayingState : AbstractTaskIconState
     {
-        private TaskIconManager taskIconManager;
+        private ITaskIconStateMachine taskIconManager;
 
-        public DelayingState(TaskIconManager taskIconManager)
+        public DelayingState(ITaskIconStateMachine taskIconManager)
         {
             this.taskIconManager = taskIconManager;
         }
