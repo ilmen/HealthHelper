@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HealthWorkHelper.Classes.ScriptProviderNamespace
 {
-    public interface ITimeToRelaxProvider
+    public interface ITimingProvider
     {
         event EventHandler OnWork;
         event EventHandler OnDelay;

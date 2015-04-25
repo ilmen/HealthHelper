@@ -70,7 +70,7 @@
     <Compile Include="Classes\Converters\TimeSpanToStringConverter.cs" />
     <Compile Include="Classes\Converters\TimeSpanToIntegerConverter.cs" />
     <Compile Include="Classes\ScriptProviderNamespace\IScriptManagerSettingProvider.cs" />
-    <Compile Include="Classes\ScriptProviderNamespace\ITimeToRelaxProvider.cs" />
+    <Compile Include="Classes\ScriptProviderNamespace\ITimingProvider.cs" />
     <Compile Include="Classes\ScriptProviderNamespace\ScriptManagerSettingProvider.cs" />
     <Compile Include="Classes\ScriptProviderNamespace\ScriptProvider.cs" />
     <Compile Include="Classes\SmartEnding.cs" />
